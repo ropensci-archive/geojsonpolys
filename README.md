@@ -9,6 +9,8 @@ geojsonpolys
 
 it haz no dependenciez
 
+data from <http://eric.clst.org/tech/usgeojson/>
+
 ## Installation
 
 Dev version
@@ -78,3 +80,6 @@ geojsonio::map_leaf(multnomah)
 * Get citation information for `geojsonpolys` in R doing `citation(package = 'geojsonpolys')`
 * Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
+
+[![rofooter](https://www.ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
