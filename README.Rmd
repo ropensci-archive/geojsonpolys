@@ -1,0 +1,68 @@
+geojsonpolys
+============
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+[![Build Status](https://travis-ci.org/ropenscilabs/geojsonpolys.svg?branch=master)](https://travis-ci.org/ropenscilabs/geojsonpolys)
+[![codecov](https://codecov.io/gh/ropenscilabs/geojsonpolys/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/geojsonpolys)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geojsonpolys)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/geojsonpolys)](https://cran.r-project.org/package=geojsonpolys)
+
+`geojsonpolys` has GeoJSON polygons of political boundaries - GeoJSON you some data
+
+## Installation
+
+Dev version
+
+```{r eval=FALSE}
+devtools::install_github("ropenscilabs/geojsonpolys")
+```
+
+```{r}
+library("geojsonpolys")
+```
+
+## Get you some geojson
+
+There's two datasets in the package so far. 
+
+One `counties_us` is a character vector of GeoJSON for each county in the US. For example:
+
+```{r}
+counties_us[1]
+```
+
+Another is a data.frame with the GeoJSON but also with metadata for states and counties, which
+can make it easier to pick out the GeoJSON you want. (if you load `tibble` you get a brief data.frame 
+output)
+
+```{r}
+library(tibble)
+counties_us_df
+```
+
+## do something
+
+Multnomah is a county in Oregon that contains Portland
+
+```{r eval=FALSE}
+library(geojsonio)
+geojsonio::map_leaf(multnomah)
+```
+
+![multnomah](tools/multnomah.png)
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropenscilabs/geojsonpolys/issues).
+* License: MIT
+* Get citation information for `geojsonpolys` in R doing `citation(package = 'geojsonpolys')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
