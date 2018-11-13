@@ -29,4 +29,37 @@ counties_us_df <- df %>%
   rename(state = NAME)
 
 # save to data/
-save(counties_us_df, file = "data/counties_us_df.rda", compress = "xz")
+gsp_counties_df <- counties_us_df
+save(gsp_counties_df, file = "data/gsp_counties_df.rda", compress = "xz")
+
+
+# counties as a named list
+counties_us_list <- apply(counties_us_df, 1, function(z) {
+  stats::setNames(
+    list(stats::setNames(list(z[['geojson']]), gsub("\\s", "_", tolower(z[['county']])))),
+    gsub("\\s", "_", tolower(z[['state']]))
+  )
+})
+out <- list()
+st_names <- unique(names(unlist(counties_us_list, FALSE)))
+for (i in seq_along(st_names)) {
+  prune <- Filter(function(z) names(z) == st_names[i], counties_us_list)
+  out[[ st_names[i] ]] <- unlist(unname(unlist(prune, FALSE)), FALSE)
+}
+gsp_counties <- out
+save(gsp_counties, file = "data/gsp_counties.rda", compress = "xz")
+
+
+
+## states
+### get states as a vector
+states_smallest <- 'http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_040_00_20m.json'
+st <- jq(url(states_smallest), '.')
+stst <- jq(st, '.features[]')
+### add names
+gsp_states <- list()
+for (i in seq_along(stst)) {
+  nm <- gsub("\\s", "_", tolower(gsub("\"", "", unclass(jq(stst[i], '.properties.NAME')))))
+  gsp_states[[ nm ]] <- stst[i]
+}
+save(gsp_states, file = "data/gsp_states.rda", compress = "xz")

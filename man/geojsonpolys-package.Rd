@@ -6,12 +6,16 @@
 \alias{geojson}
 \title{geojsonpolys}
 \description{
-GeoJSON Polygons
+GeoJSON Polygons. Data provided in this package is of
+the smallest size of the options provided, and the least resolution.
+If you want
 }
 \examples{
-length(counties_us)
-counties_us[1]
-counties_us_df
+length(gsp_counties)
+gsp_counties[1]
+gsp_counties$alabama
+gsp_counties$alabama$walker
+head(gsp_counties_df)
 }
 \author{
 Scott Chamberlain

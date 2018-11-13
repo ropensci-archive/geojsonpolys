@@ -10,17 +10,31 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/ropenscilabs/geojsonpolys.svg?branch=master)](https://travis-ci.com/ropenscilabs/geojsonpolys)
 
 
-`geojsonpolys` has GeoJSON polygons of political boundaries - GeoJSON you some data
+`geojsonpolys` provides GeoJSON polygons of political boundaries - GeoJSON you some data.
 
-it haz no dependenciez
+No dependenciez.
 
-data from <http://eric.clst.org/tech/usgeojson/>
+Data from <http://eric.clst.org/tech/usgeojson/>, which were converted from files from the United States
+Census Cartographic Boundary Files (<https://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html>).
+
+Contains data for the US only:
+
+- US polygon
+- states polygons
+- counties polygons
+- congressional polygons
 
 ## Installation
+
+CRAN version
+
+```{r eval=FALSE}
+install.packages("geojsonpolys")
+```
 
 Dev version
 
@@ -36,19 +50,19 @@ library("geojsonpolys")
 
 There's two datasets in the package so far. 
 
-One `counties_us` is a character vector of GeoJSON for each county in the US. For example:
+One `gsp_counties` is a character vector of GeoJSON for each county in the US. For example:
 
 ```{r}
-counties_us[1]
+gsp_counties[1]
 ```
 
-Another is a data.frame with the GeoJSON but also with metadata for states and counties, which
+`gsp_counties_df` is a data.frame with the GeoJSON but also with metadata for states and counties, which
 can make it easier to pick out the GeoJSON you want. (if you load `tibble` you get a brief data.frame 
 output)
 
 ```{r}
 library(tibble)
-counties_us_df
+gsp_counties_df
 ```
 
 ## do something
@@ -57,6 +71,7 @@ Multnomah is a county in Oregon that contains Portland
 
 ```{r eval=FALSE}
 library(geojsonio)
+multnomah <- gsp_counties_df[gsp_counties_df$county == "Multnomah", "geojson"]
 geojsonio::map_leaf(multnomah)
 ```
 

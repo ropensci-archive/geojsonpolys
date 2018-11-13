@@ -1,16 +1,19 @@
 Package: geojsonpolys
 Type: Package
 Title: 'GeoJSON' Polygons
-Description: 'GeoJSON' Polygons.
-Version: 0.1.0.9100
+Description: 'GeoJSON' polygons for the United States, including country level 
+    polygon, polygons for each state, polygons for each county, and polygons 
+    for congressional districts. Data collected from 
+    <http://eric.clst.org/tech/usgeojson/>.
+Version: 0.1.9.9100
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "sckott@protonmail.com")
     )
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geojsonpolys
 BugReports: https://github.com/ropenscilabs/geojsonpolys/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 LazyData: true
 Depends: R (>= 2.10)
-Suggests:
-    testthat
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
