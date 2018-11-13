@@ -5,8 +5,7 @@
 \alias{gsp_states}
 \title{US states as GeoJSON}
 \format{named list of GeoJSON strings, one for each state in the USA.
-top level list names are states.
-Length: 52}
+top level list names are states. Length: 52. Data here is 20m resolution}
 \description{
 US states as GeoJSON
 }

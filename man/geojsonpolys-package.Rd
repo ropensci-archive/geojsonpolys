@@ -6,12 +6,21 @@
 \alias{geojson}
 \title{geojsonpolys}
 \description{
-GeoJSON Polygons. Data provided in this package is of
-the smallest size of the options provided, and the least resolution.
-If you want
+GeoJSON Polygons. Most data provided in this package is of
+the smallest resolution of the options provided, except for the US
+country level outline \link{gsp_states} of which we provide all three
+resolutions. higher resolution options for states and counties
+will likely come in a future version of this package.
+
+Data is from http://eric.clst.org/tech/usgeojson/, which was taken
+originally from United States Census Cartographic Boundary Files
+(https://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html)
 }
 \examples{
+length(gsp_us)
+names(gsp_us)
 length(gsp_counties)
+names(gsp_counties)
 gsp_counties[1]
 gsp_counties$alabama
 gsp_counties$alabama$walker

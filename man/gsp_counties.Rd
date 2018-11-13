@@ -6,7 +6,7 @@
 \title{US counties as GeoJSON}
 \format{named list of GeoJSON strings, one for each county in the USA.
 top level list names are states, then counties within each state.
-Length: 52. Total number of counties: 3221}
+Length: 52. Total number of counties: 3221. Data here is 20m resolution}
 \description{
 US counties as GeoJSON
 }

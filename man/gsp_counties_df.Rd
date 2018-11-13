@@ -5,7 +5,7 @@
 \alias{gsp_counties_df}
 \title{US counties as GeoJSON, in a data.frame with metadata}
 \format{data.frame of GeoJSON strings, one for each county in the USA.
-Rows: 3221. Columns: 5.}
+Rows: 3221. Columns: 5. Data here is 20m resolution}
 \description{
 US counties as GeoJSON, in a data.frame with metadata
 }
