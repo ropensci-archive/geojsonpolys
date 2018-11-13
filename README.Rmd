@@ -53,7 +53,7 @@ There's two datasets in the package so far.
 One `gsp_counties` is a character vector of GeoJSON for each county in the US. For example:
 
 ```{r}
-gsp_counties[1]
+gsp_counties$alabama$blount
 ```
 
 `gsp_counties_df` is a data.frame with the GeoJSON but also with metadata for states and counties, which
