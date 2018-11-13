@@ -2,9 +2,8 @@ Package: geojsonpolys
 Type: Package
 Title: 'GeoJSON' Polygons
 Description: 'GeoJSON' polygons for the United States, including country level 
-    polygon, polygons for each state, polygons for each county, and polygons 
-    for congressional districts. Data collected from 
-    <http://eric.clst.org/tech/usgeojson/>.
+    polygons, polygons for each state, polygons for each county, and polygons 
+    for congressional districts. Data from <http://eric.clst.org/tech/usgeojson/>.
 Version: 0.1.9.9100
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "sckott@protonmail.com")

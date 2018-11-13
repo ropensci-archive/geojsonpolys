@@ -63,3 +63,45 @@ for (i in seq_along(stst)) {
   gsp_states[[ nm ]] <- stst[i]
 }
 save(gsp_states, file = "data/gsp_states.rda", compress = "xz")
+
+
+## us outline
+us_20m <- 'http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_outline_20m.json'
+us_5m <- 'http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_outline_5m.json'
+us_500K <- 'http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_outline_500k.json'
+us_outline_20m <- jq(url(us_20m), '.')
+us_outline_5m <- jq(url(us_5m), '.')
+us_outline_500k <- jq(url(us_500K), '.')
+library(geojsonio)
+geojsonio::map_leaf(us_outline_20m)
+geojsonio::map_leaf(us_outline_5m)
+geojsonio::map_leaf(us_outline_500k)
+gsp_us <- list(us_20m = us_outline_20m, us_5m = us_outline_5m, us_500k = us_outline_500k)
+save(gsp_us, file = "data/gsp_us.rda", compress = "xz")
+
+
+## congressional districts
+cong <- "http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_500_11_20m.json"
+congx <- jq(url(cong), '.')
+congfeat <- jq(congx, '.features[]')
+# gsp_congressional <- list()
+# for (i in seq_along(congfeat)) {
+#   gsp_congressional[[i]] <- 
+# }
+df <- tbl_df(bind_rows(lapply(congfeat, function(z) {
+  df <- as.data.frame(jsonlite::fromJSON(jq(z, ".properties")), stringsAsFactors = FALSE)
+  df$geojson <- z
+  names(df) <- tolower(names(df))
+  df
+})))
+# match with state names
+states_smallest <- 'http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_040_00_20m.json'
+sts <- jsonlite::fromJSON(states_smallest)
+stsprops <- sts$features$properties
+gsp_congressional_df <- df %>% 
+  left_join(dplyr::select(stsprops, STATE, NAME), by = c("state" = "STATE")) %>% 
+  dplyr::select(geo_id, NAME, state, cd, name, lsad, censusarea, geojson) %>% 
+  rename(state = NAME, state_code = state)
+save(gsp_congressional_df, file = "data/gsp_congressional_df.rda", compress = "xz")
+
+
